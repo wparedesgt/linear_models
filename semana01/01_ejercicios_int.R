@@ -8,10 +8,7 @@ library(UsingR)
 data("father.son")
 
 head(father.son)
-
 mean(father.son$sheight)
-
-
 mean(father.son$sheight[round(father.son$fheight) == 71])
 
 
