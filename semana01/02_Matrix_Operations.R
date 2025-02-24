@@ -6,6 +6,7 @@ library(rafalib)
 
 X <- matrix(1:12,4,3)
 X
+
 a <- 2
 a*X
 
