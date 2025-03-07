@@ -21,9 +21,22 @@ stripchart(dat$Bodyweight ~ dat$Diet, vertical=TRUE, method="jitter",
 #dat$Diet <- factor(dat$Diet)
 levels(dat$Diet)
 X <- model.matrix(~ Diet, data=dat)
+X
 head(X)
 colnames(X)
 class(X)
+
+dat$Diet <- as.factor(dat$Diet)
+levels(dat$Diet) 
+X <- model.matrix(~Diet, data = dat)
+X 
+colnames(X)
+dat$Diet <- relevel(dat$Diet, ref = "hf")
+model.matrix(~Diet, data = dat)
+dat$Diet <- relevel(dat$Diet, ref = "chow")
+
+
+
 
 Y <- dat$Bodyweight
 X <- model.matrix(~ Diet, data=dat)
@@ -37,8 +50,12 @@ fit <- lm(Bodyweight ~ Diet, data=dat)
 summary(fit)
 (coefs <- coef(fit))
 
+
+
 stripchart(dat$Bodyweight ~ dat$Diet, vertical=TRUE, method="jitter",
            main="Bodyweight over Diet", ylim=c(0,40), xlim=c(0,3))
+
+
 a <- -0.25
 lgth <- .1
 library(RColorBrewer)
@@ -55,3 +72,4 @@ summary(fit)$coefficients
 ttest <- t.test(s[["hf"]], s[["chow"]], var.equal=TRUE)
 summary(fit)$coefficients[2,3]
 ttest$statistic
+
