@@ -122,7 +122,7 @@ L3vsL2$SE
 L3vsL2.equiv <- contrast(fitTL,list(leg="L3",type="push"),list(leg="L2",type="push"))
 L3vsL2.equiv$X
 
-
+###
 X <- model.matrix(~ type + leg + type:leg, data=spider)
 colnames(X)
 head(X)
