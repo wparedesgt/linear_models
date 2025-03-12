@@ -24,3 +24,26 @@ library(contrast)
 L4vsL2 <- contrast(fitTL, list(leg="L4", type="pull"), list(leg="L2", type="pull"))
 
 L4vsL2
+
+spider$log2friction <- log2(spider$friction)
+
+boxplot(log2friction ~ type*leg, data = spider)
+
+
+fit_wp <- lm(log2friction ~ type + leg + type:leg, data=spider)
+
+summary(fit_wp)
+
+anova(fit_wp)
+
+L2vsL1 <- contrast(fit_wp, list(leg = "L2", type = "pull"), list(leg = "L1", type = "pull"))
+L2vsL1
+
+coef(fit_wp)["legL2"]
+
+
+# Use contrast to compare L2 vs L1 for push samples
+L2vsL1_push <- contrast(fit, 
+                        list(leg="L2", type="push"), 
+                        list(leg="L1", type="push"))
+L2vsL1_push
